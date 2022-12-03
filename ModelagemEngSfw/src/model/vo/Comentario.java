@@ -2,11 +2,11 @@ package model.vo;
 
 import java.time.LocalDateTime;
 
-public class ComentarioN1 {
+public class Comentario {
 	private LocalDateTime dataHora;
 	private String mensagem;
 	
-	public ComentarioN1(String mensagem) {
+	public Comentario(String mensagem) {
 		this.dataHora = LocalDateTime.now();
 		this.mensagem = mensagem;
 	}

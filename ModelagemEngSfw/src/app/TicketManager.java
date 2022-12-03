@@ -4,10 +4,10 @@ import java.util.Arrays;
 
 import exceptions.EmailInvalidoException;
 import exceptions.TelefoneInvalidoException;
-import model.AtendenteN1;
+import model.Atendente;
 import model.Cliente;
 import model.Ticket;
-import model.vo.ComentarioN1;
+import model.vo.Comentario;
 import model.vo.Email;
 import model.vo.Telefone;
 
@@ -17,10 +17,10 @@ public class TicketManager {
 		Email emailPessoal = null;
 		Telefone telefoneResidencial = null;
 		Telefone telefoneProfissional = null;
-		ComentarioN1 comentario = null;
+		Comentario comentarioN1 = null;
 				
 		Cliente cliente = null;
-		AtendenteN1 atendente = null;
+		Atendente atendenteN1 = null;
 		Ticket ticket = null;
 				
 		try {
@@ -42,13 +42,13 @@ public class TicketManager {
 		cliente.setTelefones(Arrays.asList(telefoneProfissional, telefoneResidencial));
 		cliente.setEmail(emailPessoal);
 		
-		atendente = new AtendenteN1("12345", "Mario Jorge");
-		comentario = new ComentarioN1("Analisando a ocorrência");
+		atendenteN1 = new Atendente("12345", "Mario Jorge");
+		comentarioN1 = new Comentario("Analisando a ocorrência");
 		
 		ticket = new Ticket();
 		ticket.setCliente(cliente);
-		ticket.addAtendente(atendente);
-		ticket.addComentario(comentario);
+		ticket.addAtendente(atendenteN1);
+		ticket.addComentario(comentarioN1);
 			
 		
 	}

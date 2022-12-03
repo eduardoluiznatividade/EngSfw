@@ -1,10 +1,10 @@
 package model;
 
-public class AtendenteN1 {
+public class Atendente {
 	private String matricula;
 	private String nome;
 	
-	public AtendenteN1(String matricula, String nome) {
+	public Atendente(String matricula, String nome) {
 		super();
 		this.matricula = matricula;
 		this.nome = nome;

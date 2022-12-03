@@ -2,16 +2,16 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-import model.vo.ComentarioN1;
+import model.vo.Comentario;
 
 public class Ticket {
 	private Cliente cliente;
-	private List<AtendenteN1> atendentes;
-	private List<ComentarioN1> comentarios;
+	private List<Atendente> atendentes;
+	private List<Comentario> comentarios;
 	
 	public Ticket() {
-		this.atendentes = new ArrayList<AtendenteN1>();
-		this.comentarios = new ArrayList<ComentarioN1>();
+		this.atendentes = new ArrayList<Atendente>();
+		this.comentarios = new ArrayList<Comentario>();
 	}
 	
 	
@@ -22,24 +22,20 @@ public class Ticket {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	public List<AtendenteN1> getAtendentes() {
+	
+	public List<Atendente> getAtendentes() {
 		return atendentes;
 	}
-	public void setAtendentes(List<AtendenteN1> atendentes) {
-		this.atendentes = atendentes;
-	}
-	public List<ComentarioN1> getComentarios() {
+	
+	public List<Comentario> getComentarios() {
 		return comentarios;
 	}
-	public void setComentarios(List<ComentarioN1> comentarios) {
-		this.comentarios = comentarios;
-	}
-	
-	public void addComentario(ComentarioN1 comentario) {
+		
+	public void addComentario(Comentario comentario) {
 		this.getComentarios().add(comentario);
 	}
 	
-	public void addAtendente(AtendenteN1 atendente) {
+	public void addAtendente(Atendente atendente) {
 		this.getAtendentes().add(atendente);
 	}
 
