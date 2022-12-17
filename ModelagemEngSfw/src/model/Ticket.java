@@ -1,42 +1,71 @@
 package model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import model.vo.Comentario;
+import exceptions.UsuarioException;
+import model.vo.TipoPrioridade;
+import model.vo.TipoUsuario;
+
+
 
 public class Ticket {
-	private Cliente cliente;
-	private List<Atendente> atendentes;
-	private List<Comentario> comentarios;
 	
-	public Ticket() {
-		this.atendentes = new ArrayList<Atendente>();
-		this.comentarios = new ArrayList<Comentario>();
-	}
-	
-	
-	public Cliente getCliente() {
-		return cliente;
-	}
-	
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-	
-	public List<Atendente> getAtendentes() {
-		return atendentes;
-	}
-	
-	public List<Comentario> getComentarios() {
-		return comentarios;
-	}
+	private LocalDateTime dataHoraAbertura;
+	private LocalDateTime dataHoraFechamento;
+	private String descricao;
+	private TipoPrioridade prioridade;
+	private Usuario cliente;
+	private List<Mensagem> mensagens;
 		
-	public void addComentario(Comentario comentario) {
-		this.getComentarios().add(comentario);
+	public Ticket(Usuario cliente, String descricao, TipoPrioridade prioridade) throws UsuarioException {
+		if (cliente.getTipoUsuario().equals(TipoUsuario.CLIENTE)) {
+			this.dataHoraAbertura = LocalDateTime.now();
+			this.cliente = cliente;
+			this.descricao = descricao;
+			this.prioridade = prioridade;
+			this.mensagens = new ArrayList<Mensagem>();
+		}
+		
+		throw new UsuarioException("Usuarios do tipo "+cliente.getTipoUsuario()+" não podem abrir ticket");
 	}
 	
-	public void addAtendente(Atendente atendente) {
-		this.getAtendentes().add(atendente);
+	public LocalDateTime getDataHoraAbertura() {
+		return dataHoraAbertura;
 	}
 
+	public LocalDateTime getDataHoraFechamento() {
+		return dataHoraFechamento;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public TipoPrioridade getPrioridade() {
+		return prioridade;
+	}
+
+	public Usuario getCliente() {
+		return cliente;
+	}
+
+	public List<Mensagem> getMensagens() {
+		return mensagens;
+	}
+
+	public void adicionaMensagem(Mensagem mensagem) {
+		this.getMensagens().add(mensagem);
+	}
+	
+	public boolean podeEscalonar() {
+		LocalDateTime dataHoraAtual = LocalDateTime.now();
+		LocalDateTime dataHoraFechamentoSLA = this.getDataHoraAbertura().plusHours(this.getPrioridade().obtemSLA());
+		
+		return dataHoraAtual.isBefore(dataHoraFechamentoSLA);
+		
+	
+	
+	}
+	
 }

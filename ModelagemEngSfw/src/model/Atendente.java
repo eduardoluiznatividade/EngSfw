@@ -1,32 +1,14 @@
 package model;
 
-public class Atendente {
-	private String matricula;
-	private String nome;
+import model.vo.Email;
+import model.vo.Telefone;
+import model.vo.TipoUsuario;
+
+public class Atendente extends Usuario{
 	
-	public Atendente(String matricula, String nome) {
-		super();
-		this.matricula = matricula;
-		this.nome = nome;
-	}
-
-	public String getMatricula() {
-		return matricula;
-	}
-
-	public void setMatricula(String matricula) {
-		this.matricula = matricula;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
+	public Atendente(String nome, Telefone telefone, Email email, TipoUsuario tipoUsuario) {
+		super(nome, telefone, email, TipoUsuario.ATENDENTE);
+		
 	}
 	
-	
-	
-
 }
